@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -33,11 +35,12 @@ public class NebenkostenController {
 	}
 
 	@GetMapping()
-	public List<Nebenkosten> getNebenkosten() {
+	public List<Nebenkosten> getNebenkosten(@RequestParam Long mietobjektId) {
 		List<Nebenkosten> nebenkostenList = new ArrayList<>();
-		for (NebenkostenDTO nebenkostenDTO : nebenkostenRepository.findAll()) {
+		for (NebenkostenDTO nebenkostenDTO : nebenkostenRepository.findByMietobjektId(mietobjektId)) {
 			nebenkostenList.add(nebenkostenMapper.mapNebenkostenDTOToNebenkosten(nebenkostenDTO));
 		}
+		Collections.sort(nebenkostenList);
 		return nebenkostenList;
 	}
 }

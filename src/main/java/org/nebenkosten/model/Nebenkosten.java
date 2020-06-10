@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @ApiModel("Nebenkosten Eintrag für ein Jahr")
-public class Nebenkosten {
+public class Nebenkosten implements Comparable<Nebenkosten> {
 
 	private Double gaskosten;
 
@@ -67,4 +67,10 @@ public class Nebenkosten {
 	public void setMietobjektId(Long mietobjektId) {
 		this.mietobjektId = mietobjektId;
 	}
+
+	@Override
+	public int compareTo(Nebenkosten nebenkosten) {
+		return nebenkosten.getDatum().compareTo(this.getDatum());
+	}
+
 }
