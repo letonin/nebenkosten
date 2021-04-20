@@ -2,12 +2,12 @@ package org.nebenkosten.service;
 
 import org.mapstruct.Mapper;
 import org.nebenkosten.model.Nebenkosten;
-import org.nebenkosten.model.dto.NebenkostenDTO;
+import org.nebenkosten.model.entities.NebenkostenEntity;
 
 @Mapper(componentModel = "spring")
 public interface NebenkostenMapper {
 
-	Nebenkosten mapNebenkostenDTOToNebenkosten(NebenkostenDTO nebenkostenDTO);
+	Nebenkosten mapNebenkostenDTOToNebenkosten(NebenkostenEntity nebenkostenEntity);
 
-	NebenkostenDTO mapNebenkostenToNebenkostenDTO(Nebenkosten nebenkosten);
+	NebenkostenEntity mapNebenkostenToNebenkostenDTO(Nebenkosten nebenkosten);
 }

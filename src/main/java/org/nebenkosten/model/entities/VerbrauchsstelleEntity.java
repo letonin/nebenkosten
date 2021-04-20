@@ -1,4 +1,4 @@
-package org.nebenkosten.model.dto;
+package org.nebenkosten.model.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "verbrauchsstelle")
-public class VerbrauchsstelleDTO {
+public class VerbrauchsstelleEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +20,7 @@ public class VerbrauchsstelleDTO {
 	private Double zaehlerstand;
 
 	@ManyToOne
-	private NebenkostenDTO nebenkosten;
+	private NebenkostenEntity nebenkosten;
 
 	public String getName() {
 		return name;
@@ -38,11 +38,11 @@ public class VerbrauchsstelleDTO {
 		this.zaehlerstand = zaehlerstand;
 	}
 
-	public NebenkostenDTO getNebenkosten() {
+	public NebenkostenEntity getNebenkosten() {
 		return nebenkosten;
 	}
 
-	public void setNebenkosten(NebenkostenDTO nebenkosten) {
+	public void setNebenkosten(NebenkostenEntity nebenkosten) {
 		this.nebenkosten = nebenkosten;
 	}
 }

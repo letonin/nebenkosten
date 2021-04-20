@@ -1,4 +1,4 @@
-package org.nebenkosten.model.dto;
+package org.nebenkosten.model.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "nebenkosten")
-public class NebenkostenDTO {
+public class NebenkostenEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +28,7 @@ public class NebenkostenDTO {
 	private LocalDate datum;
 
 	@OneToMany(mappedBy = "nebenkosten", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<VerbrauchsstelleDTO> verbrauchsstellen;
+	private List<VerbrauchsstelleEntity> verbrauchsstellen;
 
 	private Long mietobjektId;
 
@@ -72,11 +72,11 @@ public class NebenkostenDTO {
 		this.datum = datum;
 	}
 
-	public List<VerbrauchsstelleDTO> getVerbrauchsstellen() {
+	public List<VerbrauchsstelleEntity> getVerbrauchsstellen() {
 		return verbrauchsstellen;
 	}
 
-	public void setVerbrauchsstellen(List<VerbrauchsstelleDTO> verbrauchsstellen) {
+	public void setVerbrauchsstellen(List<VerbrauchsstelleEntity> verbrauchsstellen) {
 		this.verbrauchsstellen = verbrauchsstellen;
 	}
 

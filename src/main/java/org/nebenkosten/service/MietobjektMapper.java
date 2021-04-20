@@ -2,12 +2,12 @@ package org.nebenkosten.service;
 
 import org.mapstruct.Mapper;
 import org.nebenkosten.model.Mietobjekt;
-import org.nebenkosten.model.dto.MietobjektDTO;
+import org.nebenkosten.model.entities.MietobjektEntity;
 
 @Mapper(componentModel = "spring")
 public interface MietobjektMapper {
 
-	Mietobjekt mapMietobjektDTOToMietobjekt(MietobjektDTO mietobjektDTO);
+	Mietobjekt mapMietobjektDTOToMietobjekt(MietobjektEntity mietobjektEntity);
 
-	MietobjektDTO mapMietobjektToMietobjektDTO(Mietobjekt mietobjekt);
+	MietobjektEntity mapMietobjektToMietobjektDTO(Mietobjekt mietobjekt);
 }

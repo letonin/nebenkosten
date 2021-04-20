@@ -1,5 +1,6 @@
 package org.nebenkosten.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ public class Nebenkosten implements Comparable<Nebenkosten> {
 
 	private Double abwasserkosten;
 
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate datum;
 
 	private List<Verbrauchsstelle> verbrauchsstellen;

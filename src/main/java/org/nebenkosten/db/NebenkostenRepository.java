@@ -1,11 +1,11 @@
 package org.nebenkosten.db;
 
-import org.nebenkosten.model.dto.NebenkostenDTO;
+import org.nebenkosten.model.entities.NebenkostenEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface NebenkostenRepository extends CrudRepository<NebenkostenDTO, Long> {
+public interface NebenkostenRepository extends CrudRepository<NebenkostenEntity, Long> {
 
-	List<NebenkostenDTO> findByMietobjektId(Long mietobjektId);
+	List<NebenkostenEntity> findByMietobjektId(Long mietobjektId);
 }

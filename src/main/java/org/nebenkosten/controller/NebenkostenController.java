@@ -2,7 +2,7 @@ package org.nebenkosten.controller;
 
 import org.nebenkosten.db.NebenkostenRepository;
 import org.nebenkosten.model.Nebenkosten;
-import org.nebenkosten.model.dto.NebenkostenDTO;
+import org.nebenkosten.model.entities.NebenkostenEntity;
 import org.nebenkosten.service.NebenkostenMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,17 +28,19 @@ public class NebenkostenController {
 
 	@PostMapping()
 	public void saveNebenkosten(@RequestBody Nebenkosten nebenkosten) {
-		NebenkostenDTO nebenkostenDTO = nebenkostenMapper.mapNebenkostenToNebenkostenDTO(nebenkosten);
-		nebenkostenDTO.getVerbrauchsstellen()
-				.forEach(verbrauchsstelle -> verbrauchsstelle.setNebenkosten(nebenkostenDTO));
-		nebenkostenRepository.save(nebenkostenDTO);
+		NebenkostenEntity nebenkostenEntity = nebenkostenMapper.mapNebenkostenToNebenkostenDTO(nebenkosten);
+		nebenkostenEntity.getVerbrauchsstellen()
+				.forEach(verbrauchsstelle -> verbrauchsstelle.setNebenkosten(nebenkostenEntity));
+		nebenkostenRepository.save(nebenkostenEntity);
 	}
 
 	@GetMapping()
 	public List<Nebenkosten> getNebenkosten(@RequestParam Long mietobjektId) {
 		List<Nebenkosten> nebenkostenList = new ArrayList<>();
-		for (NebenkostenDTO nebenkostenDTO : nebenkostenRepository.findByMietobjektId(mietobjektId)) {
-			nebenkostenList.add(nebenkostenMapper.mapNebenkostenDTOToNebenkosten(nebenkostenDTO));
+		for (NebenkostenEntity nebenkostenEntity : nebenkostenRepository.findByMietobjektId(mietobjektId)) {
+			Nebenkosten nebenkosten = nebenkostenMapper.mapNebenkostenDTOToNebenkosten(nebenkostenEntity);
+			Collections.sort(nebenkosten.getVerbrauchsstellen());
+			nebenkostenList.add(nebenkosten);
 		}
 		Collections.sort(nebenkostenList);
 		return nebenkostenList;

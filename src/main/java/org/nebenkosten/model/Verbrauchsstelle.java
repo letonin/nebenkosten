@@ -3,7 +3,7 @@ package org.nebenkosten.model;
 import io.swagger.annotations.ApiModel;
 
 @ApiModel("Entspricht ein Zähler")
-public class Verbrauchsstelle {
+public class Verbrauchsstelle implements Comparable<Verbrauchsstelle> {
 
 	private String name;
 
@@ -23,5 +23,10 @@ public class Verbrauchsstelle {
 
 	public void setZaehlerstand(Double zaehlerstand) {
 		this.zaehlerstand = zaehlerstand;
+	}
+
+	@Override
+	public int compareTo(Verbrauchsstelle verbrauchsstelle) {
+		return verbrauchsstelle.getName().compareTo(this.getName());
 	}
 }

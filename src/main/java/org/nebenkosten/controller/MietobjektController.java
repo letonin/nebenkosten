@@ -2,7 +2,7 @@ package org.nebenkosten.controller;
 
 import org.nebenkosten.db.MietobjektRepository;
 import org.nebenkosten.model.Mietobjekt;
-import org.nebenkosten.model.dto.MietobjektDTO;
+import org.nebenkosten.model.entities.MietobjektEntity;
 import org.nebenkosten.service.MietobjektMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,15 +26,15 @@ public class MietobjektController {
 
 	@PostMapping()
 	public Long saveMietobjekt(@RequestBody Mietobjekt mietobjekt) {
-		MietobjektDTO mietobjektDTO = mietobjektMapper.mapMietobjektToMietobjektDTO(mietobjekt);
-		return mietobjektRepository.save(mietobjektDTO).getId();
+		MietobjektEntity mietobjektEntity = mietobjektMapper.mapMietobjektToMietobjektDTO(mietobjekt);
+		return mietobjektRepository.save(mietobjektEntity).getId();
 	}
 
 	@GetMapping()
 	public List<Mietobjekt> getMietobjekte() {
 		List<Mietobjekt> mietobjektList = new ArrayList<>();
-		mietobjektRepository.findAll().forEach(mietobjektDTO -> {
-			Mietobjekt mietobjekt = mietobjektMapper.mapMietobjektDTOToMietobjekt(mietobjektDTO);
+		mietobjektRepository.findAll().forEach(mietobjektEntity -> {
+			Mietobjekt mietobjekt = mietobjektMapper.mapMietobjektDTOToMietobjekt(mietobjektEntity);
 			mietobjektList.add(mietobjekt);
 		});
 		return mietobjektList;

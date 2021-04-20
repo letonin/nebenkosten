@@ -1,4 +1,4 @@
-package org.nebenkosten.model.dto;
+package org.nebenkosten.model.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "mietobjekt")
-public class MietobjektDTO {
+public class MietobjektEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
